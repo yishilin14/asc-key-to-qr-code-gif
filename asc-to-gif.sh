@@ -1,20 +1,23 @@
 #!/bin/bash
 
+# Check requirements
+hash qrencode 2>/dev/null || { echo >&2 "Aborting: qrencode not installed"; exit 1; }
+
 # Check argument
-if [ $# -ne 2 ]; then
-    echo "Usage: $0 <ascii armor key file> <gif file>"
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <ascii armor key file>"
     exit 1
 fi
 asc_filename=$1
-gif_filename=$2
 if [ ! -f ${asc_filename} ]; then
     echo "Error: ${asc_filename} not found"
     exit 1
 fi
 
 # Settings
-gif_delay=50
-qrcode_size=1735
+gif_filename=$1.gif
+gif_delay=100
+qrcode_size=1732
 qrcode_version=30
 
 # Split the file
@@ -27,16 +30,21 @@ for f in ${asc_filename}.split*; do
     rm $f
 done
 
-# Check png
-> ${asc_filename}.scanned
-for f in ${asc_filename}.split*; do
-    printf %s "$(zbarimg --raw -q $f)" >> ${asc_filename}.scanned
-done
-printf %s "$(cat ${asc_filename})" | diff ${asc_filename}.scanned -
-rm ${asc_filename}.scanned
+if hash zbarimg 2>/dev/null; then
+    # Check png
+    > ${asc_filename}.scanned
+    for f in ${asc_filename}.split*; do
+        printf %s "$(zbarimg --raw -q $f)" >> ${asc_filename}.scanned
+    done
+    printf %s "$(cat ${asc_filename})" | diff ${asc_filename}.scanned -
+    rm ${asc_filename}.scanned
+else
+    echo "Skip testing: zbarimg nout installed"
+fi
 
 # Convert to gif
 convert -delay ${gif_delay} ${asc_filename}.split* ${gif_filename}
+echo "Generated: ${gif_filename}"
 
 # Clean up png
 rm ${asc_filename}.split*
