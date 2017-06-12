@@ -4,8 +4,8 @@
 hash qrencode 2>/dev/null || { echo >&2 "Aborting: qrencode not installed"; exit 1; }
 
 # Check argument
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <ascii armor key file>"
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <ascii armor key filename> <gif filename>"
     exit 1
 fi
 asc_filename=$1
@@ -15,7 +15,7 @@ if [ ! -f ${asc_filename} ]; then
 fi
 
 # Settings
-gif_filename=$1.gif
+gif_filename=$2
 gif_delay=100
 qrcode_size=1732
 qrcode_version=30
