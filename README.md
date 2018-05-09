@@ -21,7 +21,7 @@ Export you keys first, then use the script.
 
 ### Docker
 
-You can use [docker](https://docs.docker.com/) to perform these operations:
+You can use [docker](https://docs.docker.com/) to perform the conversions:
 
 ```
 docker build . -t asc-key-to-qr-code-gif
