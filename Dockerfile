@@ -1,6 +1,7 @@
-FROM alpine:3.3
+FROM ubuntu:trusty
 
-RUN apk --update add --no-cache imagemagick bash libqrencode
+RUN apt-get update
+RUN apt-get install -y imagemagick bash qrencode zbar-tools
 
 ADD asc-to-gif.sh ./
 
