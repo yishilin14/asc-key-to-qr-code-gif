@@ -18,3 +18,13 @@ Export you keys first, then use the script.
     gpg --export-secret-keys -a "Key ID" > private.asc
     ./asc-to-gif.sh public.asc public.gif
     ./asc-to-gif.sh private.asc private.gif
+
+### Docker
+
+You can use [docker](https://docs.docker.com/) to perform the conversions:
+
+```
+docker build . -t asc-key-to-qr-code-gif
+docker run --rm -v $(pwd):/data -e "SRC=/data/public.asc" -e "DST=/data/public.gif" asc-key-to-qr-code-gif
+docker run --rm -v $(pwd):/data -e "SRC=/data/private.asc" -e "DST=/data/private.gif" asc-key-to-qr-code-gif
+```
