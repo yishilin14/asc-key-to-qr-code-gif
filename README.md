@@ -6,8 +6,8 @@ A simple script to convert ASCII-armored PGP keys to animated QR code (GIF).
 
 This script depends on the following libraries.
 
-1. [libqrencode](http://fukuchi.org/works/qrencode/): We use it to generate QR codes.  
-2. [imagemagick](https://github.com/ImageMagick/ImageMagick): We use it to generate the gif.
+1. [libqrencode](http://fukuchi.org/works/qrencode/): We use it to generate QR codes.
+2. [imagemagick](https://www.imagemagick.org/script/index.php): We use it to convert the PNG to gif.
 3. [zbar](http://zbar.sourceforge.net): We use it to read QR codes and test them. You don't need it if you do not want to test (comment out the "Check png" section in the script).
 
 ## Usage
