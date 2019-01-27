@@ -39,7 +39,7 @@ if hash zbarimg 2>/dev/null; then
     printf %s "$(cat ${asc_filename})" | diff ${asc_filename}.scanned -
     rm ${asc_filename}.scanned
 else
-    echo "Skip testing: zbarimg nout installed"
+    echo "Skip testing: zbarimg not installed"
 fi
 
 # Convert to gif
