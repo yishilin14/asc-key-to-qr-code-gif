@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check requirements
 hash qrencode 2>/dev/null || { echo >&2 "Aborting: qrencode not installed"; exit 1; }
