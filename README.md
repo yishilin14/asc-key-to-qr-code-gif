@@ -1,18 +1,21 @@
 # asc-key-to-qr-code-gif
 
-A simple script to convert ASCII-armored PGP keys to animated QR code (GIF).
+A script that converts ASCII-armored PGP keys (or any texts) to a series of QR codes.  
+
+This allows to transfer texts from a PC to other devices that can scan and
+decode QR codes. The script was originally made for transfering keys into [Pass for iOS](https://github.com/mssun/passforios).
 
 ## Dependencies
 
-This script depends on the following libraries.
-
-1. [libqrencode](http://fukuchi.org/works/qrencode/): We use it to generate QR codes.
-2. [imagemagick](https://www.imagemagick.org/script/index.php): We use it to convert the PNG to gif.
-3. [zbar](http://zbar.sourceforge.net): We use it to read QR codes and test them. You don't need it if you do not want to test (comment out the "Check png" section in the script).
+1. [libqrencode](http://fukuchi.org/works/qrencode/): Generate QR codes.
+2. [imagemagick](https://www.imagemagick.org/script/index.php): Convert PNGs to GIF.
+3. (Optional) [zbar](http://zbar.sourceforge.net): Read and test QR codes.
 
 ## Usage
 
-Export you keys first, then use the script.
+Execute `./asc-to-gif.sh input.txt output.gif`.
+
+An example of exporting ASCII-armored PGP keys and generate QR codes.
 
     gpg --export -a "Key ID" > public.asc
     gpg --export-secret-keys -a "Key ID" > private.asc
