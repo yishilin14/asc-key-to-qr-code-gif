@@ -14,6 +14,12 @@ if [ ! -f ${asc_filename} ]; then
     exit 1
 fi
 
+# Check if file is empty
+if [ ! -s ${asc_filename} ]; then
+    echo "Error: ${asc_filename} is empty"
+    exit 1
+fi
+
 # Settings
 gif_filename=$2
 gif_delay=100
